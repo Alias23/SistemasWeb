@@ -7,8 +7,6 @@
     }, 
     "[html]" : {
         "editor.tabSize":2
-    }
-
-
-
+    },
+    "files.insertFinalNewline": true
 }
