@@ -34,14 +34,14 @@ if(file_exists("contactos.json")){
   <!-- Static Content -->
   <link rel="stylesheet" href="./static/css/index.css" />
 
-  <title>Contacts App</title>
+  <title>AgendaContactos</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand font-weight-bold" href="#">
         <img class="mr-2" src="./static/img/logo.png" />
-        ContactsApp
+        AgendaContactos
       </a>
       <button
         class="navbar-toggler"
