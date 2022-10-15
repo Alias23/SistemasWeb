@@ -83,7 +83,7 @@ $contactos = $conn-> query("SELECT * FROM contactos");
                 <h3 class="card-title text-capitalize"><?= $contacto["name"] ?></h3>
                 <p class="m-2"><?= $contacto["phone_number"] ?></p>
                 <a href="#" class="btn btn-secondary mb-2">Edit Contact</a>
-                <a href="#" class="btn btn-danger mb-2">Delete Contact</a>
+                <a href="delete.php?id=<?= $contacto["id"]?>" class="btn btn-danger mb-2">Delete Contact</a>
               </div>
             </div>
           </div>
