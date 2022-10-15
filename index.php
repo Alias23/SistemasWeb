@@ -1,10 +1,8 @@
 <?php
 
-if(file_exists("contactos.json")){
-  $contactos = json_decode(file_get_contents("contactos.json"),true);
-} else {
-  $contactos = [];
-}
+require "database.php";
+
+$contactos = $conn-> query("SELECT * FROM contactos");
 
 ?>
 
@@ -70,7 +68,7 @@ if(file_exists("contactos.json")){
   <main>
     <div class="container pt-4 p-3">
       <div class="row">
-        <?php if (count($contactos) == 0): ?>
+        <?php if ($contactos->rowCount() == 0): ?>
           <div class="col-md-4 mx-auto">
             <div class="card card-body text-center">
               <p>No contacts saved yet</p>

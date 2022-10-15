@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS AgendaContactos;
+DROP DATABASE IF EXISTS agendacontactos;
 
-CREATE DATABASE AgendaContactos;
+CREATE DATABASE agendacontactos;
 
-USE AgendaContactos;
+USE agendacontactos;
 
 CREATE TABLE contactos (
     id INT AUTO_INCREMENT PRIMARY KEY,
