@@ -17,13 +17,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        <div class="d-flex justify-content-between w-100">
         <li class="nav-item">
-          <a class="nav-link" href="index.php"">Home</a>
+          <a class="nav-link" href="home.php"">Home</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="./add.php">Add Contact</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="register.php"">Register</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.php">Login</a>
+        </li>
+        </div>
       </ul>
+      <?php if (isset($_SESSION["usuario"])): ?>
+        <div class="p-2">
+          <?= $_SESSION["usuario"]["email"] ?>
+        </div>
+      <?php endif ?>
     </div>
   </div>
 </nav>

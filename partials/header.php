@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
   <!-- Bootstrap -->
   <link
     rel="stylesheet"
@@ -22,9 +23,13 @@
 
   <!-- Static Content -->
   <link rel="stylesheet" href="./static/css/index.css" />
+  <script defer src="./static/js/validar.js"></script>
+
 
   <title>AgendaContactos</title>
 </head>
 <body>
 <?php require "navbar.php"?>  
 <main>
+
+
