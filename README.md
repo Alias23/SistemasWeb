@@ -11,3 +11,5 @@ $ docker-compose up -d
 Para parar el container:
 
 $ docker-compose stop
+
+Autor: Xabier Badiola Guembe
