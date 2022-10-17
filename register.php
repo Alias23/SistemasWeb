@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <p class="text-danger">
                 <?= $error ?>
               </p>
-            <?php endif ?>
+            <?php endif?>
             <form id="form" method="POST" action="register.php" onsubmit="return formValidation()">
               <div class="mb-3 row">
                 <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
