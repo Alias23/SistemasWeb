@@ -58,20 +58,20 @@ function formValidation() {
     return false;
   }
 
-  if (!DNI.value.match( /^[0-9]{8}$/) ){
+  if (!DNI.value.match( /^[0-9]{8}[A-Z]{1}$/) ){
     alert("DNI must be 8 numbers and one letter long!");
     DNI.focus();
     return false;
   }
 
-  if (!phoneNumber.value.match(/^[1-9][0-9]{8}$/) && !phoneNumber.value.length >=9) {
+  if (!phoneNumber.value.match(/^[1-9][0-9]{8}$/)) {
     alert("Phone number must be 9 characters long number and first digit can't be 0!");
     phoneNumber.focus();
     return false;
   }
 
   // checking email format
-  if (email.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+  if (email.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/)  ) {
     alert("Please enter a valid email!");
     email.focus();
     return false;
