@@ -25,20 +25,20 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "root1"
-      MYSQL_USER: "admin"
-      MYSQL_PASSWORD: "admin1"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: ""
       MYSQL_DATABASE: "agendacontactos"
     ports:
       - "8889:3306"
 
-  phpmyadmin:
+ phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.2.0
     links:
       - db
     ports:
       - 8890:80
     environment:
-      MYSQL_USER: "admin"
-      MYSQL_PASSWORD: "admin1"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: ""
       MYSQL_DATABASE: "agendacontactos"
