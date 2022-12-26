@@ -1,0 +1,44 @@
+version: "3.1"
+services:
+  web:
+    image: SistemasWeb-master
+    container_name: docker-php
+    environment:
+      - ALLOW_OVERRIDE=true
+    ports:
+      - "81:80"
+      - "444:443"
+    links:
+      - db
+    volumes:
+      - ./:/var/www/html/
+      - ./setup.conf:/etc/apache2/sites-enabled/setup.conf
+      - ./llave.key:/etc/apache2/ssl/llave.key
+      - ./certificado.crt:/etc/apache2/ssl/certificado.crt
+      - ./servidor.csr:/etc/apache2/ssl/servidor.csr
+
+  db:
+    image: mariadb:10.8.2
+    container_name: docker-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root1"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "admin1"
+      MYSQL_DATABASE: "agendacontactos"
+    ports:
+      - "8889:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.0
+    links:
+      - db
+    ports:
+      - 8890:80
+    environment:
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "admin1"
+      MYSQL_DATABASE: "agendacontactos"
