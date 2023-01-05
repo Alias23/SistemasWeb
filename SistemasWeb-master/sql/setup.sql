@@ -15,7 +15,6 @@ CREATE TABLE usuarios (
     password VARCHAR(255)
 );
 
---DROP TABLE usuarios;
 
 CREATE TABLE contactos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,7 +27,7 @@ CREATE TABLE contactos (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
-DROP TABLE contactos;
+
 
 
 -- INSERT INTO contactos (name, phone_number) VALUES ("Pepe", "123456789");

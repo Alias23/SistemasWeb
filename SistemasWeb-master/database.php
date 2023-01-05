@@ -3,7 +3,7 @@
 $host = "localhost";
 $database = "agendacontactos";
 $usuario = "root";
-$password = "";
+$password = "root";
 
 try{
   $conn = new PDO("mysql:host=$host;dbname=$database", $usuario, $password);
@@ -16,3 +16,4 @@ try{
   die("PDO connection error: " . $e-> getMessage());
 }
 
+?>
