@@ -2,8 +2,8 @@
 
 $host = "localhost";
 $database = "agendacontactos";
-$usuario = "root";
-$password = "";
+$usuario = "admin";
+$password = "nimda";
 
 try{
   $conn = new PDO("mysql:host=$host;dbname=$database", $usuario, $password);
