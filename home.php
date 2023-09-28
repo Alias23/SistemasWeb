@@ -19,7 +19,7 @@ $contactos = $conn-> query("SELECT * FROM contactos WHERE id_usuario = {$_SESSIO
     <?php if ($contactos->rowCount() == 0): ?>
       <div class="col-md-4 mx-auto">
         <div class="card card-body text-center">
-          <p>No contacts saved yet</p>
+          <p>No se ha guardado ningún contacto</p>
           <a href="add.php">Add One!</a>
         </div>
       </div>
