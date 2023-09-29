@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS agendacontactos;
+DROP DATABASE IF EXISTS agendacontactos; --Cuando funcione, hay que quitar esto
 
 CREATE DATABASE agendacontactos;
 

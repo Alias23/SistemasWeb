@@ -1,22 +1,22 @@
 version: "3.1"
 services:
-  # web:
-  #   image: sistemaweb
-  #   container_name: docker-php
-  #   environment:
-  #     - ALLOW_OVERRIDE=true
-  #   ports:
-  #     - "81:80"
-  #     - "444:443"
-  #   links:
-  #     - db
-  #   volumes:
-  #     - ./:/var/www/html/
-  #     - ./sistemaweb.conf:/etc/apache2/sites-enabled/sistemaweb.conf
-  #     #hay q mirar lo de las claves ssh
-  #     - ./llave.key:/etc/apache2/ssl/llave.key
-  #     - ./certificado.crt:/etc/apache2/ssl/certificado.crt
-  #     - ./servidor.csr:/etc/apache2/ssl/servidor.csr
+  web:
+    image: sistemaweb
+    container_name: docker-php
+    environment:
+      - ALLOW_OVERRIDE=true
+    ports:
+      - "81:80"
+      - "444:443"
+    links:
+      - db
+    volumes:
+      - ./:/var/www/html/
+      #hay q mirar lo de las claves ssh
+      - ./llave.key:/etc/apache2/ssl/llave.key
+      - ./certificado.crt:/etc/apache2/ssl/certificado.crt
+      - ./servidor.csr:/etc/apache2/ssl/servidor.csr
+      - ./sistemaweb.conf:/etc/apache2/sites-enabled/sistemaweb.conf
   db:
     image: mariadb:10.6.12
     container_name: docker-mysql
