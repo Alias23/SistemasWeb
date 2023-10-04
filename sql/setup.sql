@@ -1,3 +1,5 @@
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 DROP DATABASE IF EXISTS agendacontactos; --Cuando funcione, hay que quitar esto
 
 CREATE DATABASE agendacontactos;

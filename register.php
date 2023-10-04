@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Register</div>
+          <div class="card-header">Registrarse</div>
           <div class="card-body">
             <?php if ($error): ?>
               <p class="text-danger">
