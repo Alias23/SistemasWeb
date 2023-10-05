@@ -12,4 +12,6 @@ Para parar el container:
 
 $ docker-compose stop
 
+Para el driver:
+$ sudo apt-get install sqlite php-sqlite3
 Autor: Xabier Badiola Guembe

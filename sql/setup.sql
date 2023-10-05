@@ -1,7 +1,3 @@
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-DROP DATABASE IF EXISTS agendacontactos; --Cuando funcione, hay que quitar esto
-
 CREATE DATABASE agendacontactos;
 
 USE agendacontactos;
@@ -17,7 +13,6 @@ CREATE TABLE usuarios (
     password VARCHAR(255)
 );
 
---DROP TABLE usuarios;
 
 CREATE TABLE contactos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -30,7 +25,5 @@ CREATE TABLE contactos (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
-DROP TABLE contactos;
-
-
--- INSERT INTO contactos (name, phone_number) VALUES ("Pepe", "123456789");
+INSERT INTO usuarios (name, apellidos, DNI, phone_number, fecha_de_nacimiento, email, password)
+VALUES ('John', 'Doe', '123456789', '555-1234', '1990-01-01', 'john.doe@example.com', 'mypassword');
