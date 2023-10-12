@@ -4,40 +4,47 @@ require "database.php";
 
 $error = null;
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-  if(empty($_POST["name"]) || empty($_POST["apellidos"]) || empty($_POST["DNI"]) || empty($_POST["phone_number"]) || empty($_POST["fecha_de_nacimiento"]) || empty($_POST["email"]) || empty($_POST["password"])){
-    $error = "Por favor rellena todos los campos.";
-    // var_dump($_POST);
-    // die();
-  } else if(!str_contains($_POST["email"], "@")){
-    $error = "Email invalido." ;
-  } else {
-    $name = $_POST["name"];
-    $apellidos = $_POST["apellidos"];
-    $DNI = $_POST["DNI"];
-    $phoneNumber = $_POST["phone_number"];
-    $fechaDeNacimiento = $_POST["fecha_de_nacimiento"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email' ");
-    $statement->execute();
-
-    if ($statement->rowCount() > 0){
-      $error="Email repetido";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (
+        empty($_POST["name"]) || empty($_POST["apellidos"]) || empty($_POST["DNI"]) || 
+        empty($_POST["phone_number"]) || empty($_POST["fecha_de_nacimiento"]) || 
+        empty($_POST["email"]) || empty($_POST["password"])
+    ) {
+        $error = "Por favor, rellena todos los campos.";
+    } else if (!str_contains($_POST["email"], "@")) {
+        $error = "Email inválido." ;
     } else {
-      $conn->prepare("INSERT INTO usuarios (name,apellidos,DNI,phone_number,fecha_de_nacimiento,email,password) VALUES ('$name','$apellidos', '$DNI', '$phoneNumber', '$fechaDeNacimiento', '$email', '$password')")->execute();
+        $name = $_POST["name"];
+        $apellidos = $_POST["apellidos"];
+        $DNI = $_POST["DNI"];
+        $phoneNumber = $_POST["phone_number"];
+        $fechaDeNacimiento = $_POST["fecha_de_nacimiento"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        // Hash de la contraseña antes de almacenarla
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email'");
+        $statement->execute();
+
+        if ($statement->rowCount() > 0) {
+            $error = "Email repetido";
+        } else {
+            // Almacena la contraseña hasheada en la base de datos
+            $conn->prepare("INSERT INTO usuarios (name,apellidos,DNI,phone_number,fecha_de_nacimiento,email,password) VALUES ('$name','$apellidos', '$DNI', '$phoneNumber', '$fechaDeNacimiento', '$email', '$hashedPassword')")->execute();
+        }
+
+        $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email' LIMIT 1");
+        $statement->execute();
+        $usuario = $statement->fetch(PDO::FETCH_ASSOC);
+
+        session_start();
+        $_SESSION["usuario"] = $usuario;
+
+        header("Location: home.php");
     }
-
-    $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email' LIMIT 1");
-    $statement->execute();
-    $usuario = $statement->fetch(PDO::FETCH_ASSOC);
-
-    session_start();
-    $_SESSION["usuario"] = $usuario;
-
-    header("Location: home.php");
-  }
-  }
+}
 ?>
 
 <?php require "partials/header.php"?>

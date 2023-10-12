@@ -19,18 +19,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $statement->execute();
 
     if ($statement->rowCount() == 0){
-      $error="Las crdenciales no coinciden.";
+      $error="Las credenciales no coindiden o no existe usuario.";
     } else {
       $usuario = $statement->fetch(PDO::FETCH_ASSOC);
-
-      if(!password_verify($_POST["password"], $usuario["password"])){
+      $prueba=$usuario["password"];
+      if(!password_verify($password, $usuario["password"])){
         $error="Las credenciales no coinciden.";
       } else {
         session_start();
-
         $_SESSION["usuario"] = $usuario;
 
-        header("Location : home.php");
+        header("Location: home.php");
       }
     }
   }

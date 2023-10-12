@@ -1,4 +1,4 @@
-CREATE DATABASE agendacontactos;
+CREATE DATABASE IF NOT EXISTS agendacontactos;
 
 USE agendacontactos;
 
@@ -24,6 +24,3 @@ CREATE TABLE contactos (
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
-
-INSERT INTO usuarios (name, apellidos, DNI, phone_number, fecha_de_nacimiento, email, password)
-VALUES ('John', 'Doe', '123456789', '555-1234', '1990-01-01', 'john.doe@example.com', 'mypassword');
