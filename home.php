@@ -9,7 +9,7 @@ if (!isset($_SESSION["usuario"])) {
   return;
 }
 
-$contactos = $conn-> query("SELECT * FROM contactos WHERE id_usuario = {$_SESSION['usuario']['id']}");
+$contactos = $conn-> query("SELECT * FROM contactos WHERE id = {$_SESSION['usuario']['id']}");
 
 ?>
 
@@ -30,15 +30,24 @@ $contactos = $conn-> query("SELECT * FROM contactos WHERE id_usuario = {$_SESSIO
           <div class="card-body">
             <h3 class="card-title text-capitalize"><?= $contacto["name"] ?></h3>
             <p class="m-2"><?= $contacto["apellidos"] ?></p>
-            <p class="m-2"><?= $contacto["empresa"] ?></p>
+            <p class="m-2"><?= $contacto["email"] ?></p>
             <p class="m-2"><?= $contacto["phone_number"] ?></p>
-            <p class="m-2"><?= $contacto["second_phone_number"] ?></p>
             <a href="edit.php?id=<?= $contacto["id"]?>" class="btn btn-secondary mb-2">Edit Contact</a>
             <a href="delete.php?id=<?= $contacto["id"]?>" class="btn btn-danger mb-2">Delete Contact</a>
+            <div class="card card-body text-center">
+            <a href="chat.php?id_receptor=<?= $contacto["id_usuario"]?>&id_emisor=<?=$_SESSION['usuario']['id']?>" class="btn btn-primary mb-2">Abrir chat</a>
+          </div>
+      </div>
           </div>
         </div>
       </div>
     <?php endforeach ?>
-  </div>
+    <?php if ($contactos->rowCount() > 0): ?>
+      <div class="card card-body text-center">
+            <p>Añade más contactos</p>
+            <a href="add.php">Add One!</a>
+          </div>
+      </div>
+  <?php endif ?>
 </div>
 <?php require "partials/footer.php"?>

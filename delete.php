@@ -21,4 +21,5 @@ $statement->execute();
 
 $_SESSION["flash"] = ["message" => "Contacto {$contacto['name']} deleted."];
 
-header("Location : home.php");
+header("Location: home.php");
+return;
