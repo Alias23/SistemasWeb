@@ -30,6 +30,11 @@
         <li class="nav-item">
           <a class="nav-link" href="login.php">Login</a>
         </li>
+        <?php if (isset($_SESSION["usuario"])): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">Logout</a>
+        </li>
+        <?php endif ?>
         </div>
       </ul>
       <?php if (isset($_SESSION["usuario"])): ?>
