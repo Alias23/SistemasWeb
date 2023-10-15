@@ -1,4 +1,3 @@
-docker-compose down
 sudo docker build -t="agendacontactos" .
 openssl genrsa -out llave.key 2048
 openssl req -new -key llave.key -out servidor.csr
