@@ -1,6 +1,14 @@
 .navbar img{
     width: 1.2rem;
 }
+
+.move-image {
+    position: absolute; /* Establece la posición absoluta para que puedas controlar la ubicación */
+    top: 65%; /* Mueve la imagen hacia abajo un 50% del contenedor padre */
+    left: 50%; /* Mueve la imagen hacia la derecha un 50% del contenedor padre */
+    transform: translate(-50%, -50%); /* Centra la imagen exactamente en el centro del contenedor */
+  }
+  
 /* Estilo general de la página */
 body {
     font-family: Arial, sans-serif;
@@ -228,6 +236,10 @@ body {
   button:hover {
     background-color: #0a6a5f; /* Color de fondo del botón al pasar el cursor sobre él */
   }
+  
+  img, svg {
+    vertical-align: bottom;
+}
 
   .message-container {
         max-height: 500px;

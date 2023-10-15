@@ -6,11 +6,12 @@ if (isset($_SESSION["usuario"])) {
 }
 ?>
 <?php require "partials/header.php";?>
-<div class="welcome d-flex align-items-center justify-content-center">
+<div class="welcome d-flex flex-column align-items-center">
   <div class="text-center">
     <h1>Almacena tus contactos</h1>
-    <a class="btn btn-lg btn-dark" href="/register.php">Registrate ahora</a>
+    <a class="btn btn-lg btn-dark" href="/register.php">Regístrate ahora</a>
   </div>
+  <img class="move-image" src="./static/img/logo2.png" alt="Descripción de la imagen" width="300" height="200">
 </div>
 
 <?php require "partials/footer.php"?>
