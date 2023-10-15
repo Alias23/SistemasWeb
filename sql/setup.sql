@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS contactos (
     id_usuario INT NOT NULL,
     primaria INT AUTO_INCREMENT PRIMARY KEY,
     FOREIGN KEY (id) REFERENCES usuarios(id),
-    FOREIGN KEY (email) REFERENCES usuarios(email),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 

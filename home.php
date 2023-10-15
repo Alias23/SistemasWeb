@@ -32,7 +32,6 @@ $contactos = $conn-> query("SELECT * FROM contactos WHERE id = {$_SESSION['usuar
             <p class="m-2"><?= $contacto["apellidos"] ?></p>
             <p class="m-2"><?= $contacto["email"] ?></p>
             <p class="m-2"><?= $contacto["phone_number"] ?></p>
-            <a href="edit.php?id=<?= $contacto["id"]?>" class="btn btn-secondary mb-2">Edit Contact</a>
             <a href="delete.php?id=<?= $contacto["id"]?>" class="btn btn-danger mb-2">Delete Contact</a>
             <div class="card card-body text-center">
             <a href="chat.php?id_receptor=<?= $contacto["id_usuario"]?>&id_emisor=<?=$_SESSION['usuario']['id']?>" class="btn btn-primary mb-2">Abrir chat</a>

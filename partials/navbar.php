@@ -24,15 +24,25 @@
         <!-- <li class="nav-item">
           <a class="nav-link" href="./add.php">Add Contact</a>
         </li> -->
+        <?php if (!isset($_SESSION["usuario"])): ?>
         <li class="nav-item">
           <a class="nav-link" href="register.php"">Register</a>
         </li>
+        <?php endif ?>
+        <?php if (!isset($_SESSION["usuario"])): ?>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Login</a>
+          <?php endif ?>
         </li>
         <?php if (isset($_SESSION["usuario"])): ?>
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Logout</a>
+        </li>
+        <?php endif ?>
+        </li>
+        <?php if (isset($_SESSION["usuario"])): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="edit.php">Editar datos</a>
         </li>
         <?php endif ?>
         </div>

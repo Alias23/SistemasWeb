@@ -76,7 +76,7 @@ $mensajes = getMensajes($conn, $id_emisor, $id_receptor);
     <p>Estás hablando con: <?= $nombre ?></p>
 
     <!-- Mostrar mensajes en una caja con barra de desplazamiento -->
-    <div style="max-height: 500px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+    <div class="message-container;">
         <h3>Mensajes</h3>
         <ul>
             <?php foreach ($mensajes as $mensaje) : ?>
