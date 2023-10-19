@@ -12,6 +12,7 @@ services:
       - db
     volumes:
       - ./:/var/www/html/
+      #hay q mirar lo de las claves ssh
       - ./llave.key:/etc/apache2/ssl/llave.key
       - ./certificado.crt:/etc/apache2/ssl/certificado.crt
       - ./servidor.csr:/etc/apache2/ssl/servidor.csr
