@@ -6,7 +6,7 @@ $error = null;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"]) || empty($_POST["password"])) {
         $error = "Por favor rellena todos los campos.";
-    } else if (!str_contains($_POST["email"], "@")) {
+    } else if (strpos($_POST["email"], "@")==false) {
         $error = "Email invalido.";
     } else {
         session_start();
