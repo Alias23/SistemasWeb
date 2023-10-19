@@ -12,13 +12,12 @@ services:
       - db
     volumes:
       - ./:/var/www/html/
-      #hay q mirar lo de las claves ssh
       - ./llave.key:/etc/apache2/ssl/llave.key
       - ./certificado.crt:/etc/apache2/ssl/certificado.crt
       - ./servidor.csr:/etc/apache2/ssl/servidor.csr
       - ./sistemaweb.conf:/etc/apache2/sites-enabled/sistemaweb.conf
   db:
-    image: mariadb:10.6.12
+    image: mariadb:10.8.2
     container_name: docker-mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -35,7 +34,7 @@ services:
       - ./sql/setup.sql:/docker-entrypoint-initdb.d/agendacontactos.sql
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.2.0
+    image: phpmyadmin/phpmyadmin:latest
     links:
       - db
     ports:
