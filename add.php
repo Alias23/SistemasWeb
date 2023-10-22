@@ -52,6 +52,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<?php
+// Aquí deberías incluir la conexión a tu base de datos
+
+// Consulta para obtener la lista de usuarios
+$sql = $conn->prepare("SELECT email FROM usuarios");
+$sql->execute();
+
+if ($sql->rowCount() > 0) {
+    // Construir la lista de usuarios
+    $userList = "<ul>";
+    while($row = $sql->fetch()) {
+        $userList .= "<li>" . $row["email"] . "</li>";
+    }
+    $userList .= "</ul>";
+
+    // Mostrar la lista solo cuando se realiza una solicitud AJAX
+    if (isset($_POST['ajax'])) {
+        echo $userList;
+        exit;
+    }
+} else {
+    echo "No hay usuarios";
+}
+
+// Cierra la conexión a la base de datos
+//$mysqli->close();
+?>
 
 <?php require "partials/header.php" ?>
 <div class="container pt-5">
@@ -70,6 +97,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label for="name" class="col-md-4 col-form-label text-md-end">Email</label>
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control" name="email" required autocomplete="name" autofocus>
+                                
+                                <!-- Nuevo div para mostrar la lista de usuarios -->
+                                <div id="user-list-container" class="user-list-container"></div>
                             </div>
                         </div> 
                         <div class="mb-3 row">
@@ -83,5 +113,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </div>
+
+<!-- Agregamos el script de jQuery directamente aquí -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Cuando se hace clic en la caja de texto
+    $("#email").click(function(){
+        // Realiza una llamada AJAX para obtener la lista de usuarios
+        $.ajax({
+            type: 'POST',
+            url: window.location.href, // Envía la solicitud al mismo archivo
+            data: {ajax: true}, // Envía una bandera para identificar la solicitud AJAX
+            success: function(data){
+                // Coloca la lista de usuarios en el contenedor
+                $("#user-list-container").html(data);
+                
+                // Muestra el contenedor
+                $("#user-list-container").slideDown();
+            }
+        });
+    });
+
+    // Cuando se hace clic fuera del contenedor, ocúltalo
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#user-list-container, #email').length) {
+            $("#user-list-container").slideUp();
+        }
+    });
+});
+</script>
+<style>
+.user-list-container {
+    display: none;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    position: absolute;
+    width: 100%;
+    white-space: nowrap; /* Evita que los usuarios se dividan en múltiples líneas */
+}
+
+.user-list-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-list-container li {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+</style>
 
 <?php require "partials/footer.php" ?>

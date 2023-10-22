@@ -35,3 +35,8 @@ CREATE TABLE IF NOT EXISTS mensajes (
     FOREIGN KEY (id_emisor) REFERENCES usuarios(id),
     FOREIGN KEY (id_receptor) REFERENCES usuarios(id)
 );
+
+INSERT IGNORE INTO usuarios (name, apellidos, DNI, phone_number, fecha_de_nacimiento, email, password)
+VALUES 
+    ('Usuario1', 'ApellidosUsuario1', '12341234L', '656123123', '11/12/2002', 'usuario1@mail.com', 'password1'),
+    ('Usuario2', 'ApellidosUsuario2', '12344123Q', '685975321', '25/10/1973', 'usuario2@mail.com', 'password2');
