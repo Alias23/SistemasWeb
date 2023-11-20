@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="mb-3 row">
                             <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
                             <div class="col-md-6">
-                                <input id="password" type="text" class="form-control" name="password" required autocomplete="password" autofocus>
+                                <input id="password" type="password" class="form-control" name="password" required autocomplete="password" autofocus>
                             </div>
                         </div>
 

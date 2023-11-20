@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Por favor, rellena todos los campos.";
     } else if (strpos($_POST["email"], "@")==false) {
         $error = "Email inválido." ;
-    } else {
+    }else {
         $name = $_POST["name"];
         $apellidos = $_POST["apellidos"];
         $DNI = $_POST["DNI"];
@@ -30,10 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($statement->rowCount() > 0) {
             $error = "Email repetido";
-        } else {
+          } 
+          else {
             // Almacena la contraseña hasheada en la base de datos
             $conn->prepare("INSERT INTO usuarios (name,apellidos,DNI,phone_number,fecha_de_nacimiento,email,password) VALUES ('$name','$apellidos', '$DNI', '$phoneNumber', '$fechaDeNacimiento', '$email', '$hashedPassword')")->execute();
-        }
+        
 
         $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email' LIMIT 1");
         $statement->execute();
@@ -43,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["usuario"] = $usuario;
 
         header("Location: home.php");
-    }
+        }
+      }
 }
 ?>
 
@@ -111,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
 
                 <div class="col-md-6">
-                  <input id="password" type="text" class="form-control" name="password" required autocomplete="password" autofocus>
+                  <input id="password" type="password" class="form-control" name="password" required autocomplete="password" autofocus>
                 </div>
               </div>
 
