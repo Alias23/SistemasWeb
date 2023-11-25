@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!password_verify($password, $usuario["password"])) {
                 $error = "Las credenciales no coinciden.";
             } else {
+                session_set_cookie_params(600, '/', '', false, true);
                 session_start();
                 $_SESSION["usuario"] = $usuario;
                 header("Location: home.php");

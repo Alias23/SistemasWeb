@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email' LIMIT 1");
         $statement->execute();
         $usuario = $statement->fetch(PDO::FETCH_ASSOC);
-
+        session_set_cookie_params(600, '/', '', false, true);
         session_start();
         $_SESSION["usuario"] = $usuario;
 
