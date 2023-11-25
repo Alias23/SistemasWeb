@@ -1,14 +1,14 @@
 // const form = document.getElementById("form");
-const userName = document.getElementById("name");
-const apellidos = document.getElementById("apellidos");
-const DNI = document.getElementById("DNI");
-const phoneNumber = document.getElementById("phone_number");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
+//const userName = document.getElementById("name");
+//const apellidos = document.getElementById("apellidos");
+//const DNI = document.getElementById("DNI");
+//const phoneNumber = document.getElementById("phone_number");
+//const email = document.getElementById("email");
+//const password = document.getElementById("password");
 
-function formValidation() {
+function formValidationEdit() {
   // checking length of name
-  
+
   if (userName.value.length < 2 || userName.value.length > 20) {
     alert("Name length should be more than 2 and less than 21 charaters");
     userName.focus();
@@ -51,15 +51,18 @@ function formValidation() {
       return false;
     }
   // checking password character pattern
-  if (!password.value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,25}$/)) {
-    alert("Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character, and must be between 12 and 25 characters long.");
-    password.focus();
-    return false;
-  }
-  if (password.value.indexOf('@') !== -1 || password.value.indexOf('#') !== -1 || password.value.indexOf('"') !== -1 || password.value.indexOf("'") !== -1 || password.value.indexOf(';') !== -1 || password.value.indexOf('&') !== -1 || password.value.indexOf('\\') !== -1) {
-    alert("La contraseña no puede contener los caracteres @, #, \", ', \\, ;, &")
-    password.focus();
-    return false;
-  }
+  var updatePasswordCheckbox = document.getElementById("update_password");
+  if(updatePasswordCheckbox.checked){
+    if (!password.value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,25}$/)) {
+        alert("Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character, and must be between 12 and 25 characters long.");
+        password.focus();
+        return false;
+    }
+    if (password.value.indexOf('@') !== -1 || password.value.indexOf('#') !== -1 || password.value.indexOf('"') !== -1 || password.value.indexOf("'") !== -1 || password.value.indexOf(';') !== -1 || password.value.indexOf('&') !== -1 || password.value.indexOf('\\') !== -1) {
+        alert("La contraseña no puede contener los caracteres @, #, \", ', \\, ;, &")
+        password.focus();
+        return false;
+    }
+  }     
   return true;
 }

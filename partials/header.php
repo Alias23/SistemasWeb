@@ -25,6 +25,9 @@
   <link rel="stylesheet" href="./static/css/index.css" />
   <script defer src="./static/js/validar.js"></script>
 
+  <link rel="stylesheet" href="./static/css/index.css" />
+  <script defer src="./static/js/validarEdit.js"></script>
+
 
   <title>AgendaContactos</title>
 </head>
