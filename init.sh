@@ -1,4 +1,3 @@
-docker build -t="agendacontactos" ./Docker/Web
 openssl genrsa -out llave.key 2048
 openssl req -new -key llave.key -out servidor.csr
 openssl x509 -req -days 365 -in servidor.csr -signkey llave.key -out certificado.crt

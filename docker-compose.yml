@@ -2,6 +2,7 @@ version: "3.1"
 services:
   web:
     build: ./Docker/Web
+    #image: agendacontactos
     container_name: docker-php
     environment:
       - ALLOW_OVERRIDE=true
@@ -25,7 +26,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_USER: "admin"
-      MYSQL_PASSWORD: "nimda"
+      MYSQL_PASSWORD: "SeguridadEntrega2.2023"
       MYSQL_DATABASE: "agendacontactos"
 
     ports:
@@ -35,12 +36,13 @@ services:
       - ./sql/setup.sql:/docker-entrypoint-initdb.d/agendacontactos.sql
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    image: phpmyadmin:latest
+    container_name: docker-phpmyadmin
     links:
       - db
     ports:
-      - 8890:80
+      - "8890:80"
     environment:
       MYSQL_USER: "admin"
-      MYSQL_PASSWORD: "nimda"
+      MYSQL_PASSWORD: "SeguridadEntrega2.2023"
       MYSQL_DATABASE: "agendacontactos"
