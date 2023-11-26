@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
         $password = $_POST["password"];
         $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email' LIMIT 1 ");
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->execute();
 
         if ($statement->rowCount() == 0) {
@@ -29,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 session_start();
                 $_SESSION["usuario"] = $usuario;
                 header("Location: home.php");
+                exit();
             }
         }
     }
