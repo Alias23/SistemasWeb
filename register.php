@@ -13,7 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Por favor, rellena todos los campos.";
     } else if (strpos($_POST["email"], "@")==false) {
         $error = "Email inválido." ;
-    }else {
+    } else if (strlen($password) < 8) {
+      $error = "La contraseña debe tener al menos 8 caracteres.";
+    } else {
         $name = $_POST["name"];
         $apellidos = $_POST["apellidos"];
         $DNI = $_POST["DNI"];
@@ -26,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email'");
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->execute();
 
         if ($statement->rowCount() > 0) {
@@ -33,10 +36,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           } 
           else {
             // Almacena la contraseña hasheada en la base de datos
-            $conn->prepare("INSERT INTO usuarios (name,apellidos,DNI,phone_number,fecha_de_nacimiento,email,password) VALUES ('$name','$apellidos', '$DNI', '$phoneNumber', '$fechaDeNacimiento', '$email', '$hashedPassword')")->execute();
-        
+            $conn->prepare("INSERT INTO usuarios (name,apellidos,DNI,phone_number,fecha_de_nacimiento,email,password) VALUES ('$name','$apellidos', '$DNI', '$phoneNumber', '$fechaDeNacimiento', '$email', '$hashedPassword')");
+            $conn->bindParam(':name', $name, PDO::PARAM_STR);
+            $conn->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
+            $conn->bindParam(':DNI', $DNI, PDO::PARAM_STR);
+            $conn->bindParam(':phoneNumber', $phoneNumber, PDO::PARAM_STR);
+            $conn->bindParam(':fechaDeNacimiento', $fechaDeNacimiento, PDO::PARAM_STR);
+            $conn->bindParam(':email', $email, PDO::PARAM_STR);
+            $conn->bindParam(':hashedPassword', $hashedPassword, PDO::PARAM_STR);
+            $conn->execute();
+            
 
         $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email' LIMIT 1");
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
         $statement->execute();
         $usuario = $statement->fetch(PDO::FETCH_ASSOC);
         session_set_cookie_params(600, '/', '', false, true);
@@ -44,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["usuario"] = $usuario;
 
         header("Location: home.php");
+        exit();
         }
       }
 }
