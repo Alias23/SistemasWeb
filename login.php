@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_destroy();
 
         $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1 ");
-        $statement->bindParam(':email', $email, PDO::PARAM_STR); #Anti filtraciones
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->execute();
 
         if ($statement->rowCount() == 0) {
