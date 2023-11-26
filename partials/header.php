@@ -1,3 +1,18 @@
+<?php
+// partials/header.php
+
+// Función para generar y almacenar el token CSRF
+function generarYAlmacenarTokenCSRF() {
+    $token = bin2hex(random_bytes(32));
+    $_SESSION['csrf_token'] = $token;
+    return $token;
+}
+
+// Si no hay un token CSRF almacenado, generarlo y almacenarlo
+if (!isset($_SESSION['csrf_token'])) {
+    generarYAlmacenarTokenCSRF();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +43,11 @@
   <link rel="stylesheet" href="./static/css/index.css" />
   <script defer src="./static/js/validarEdit.js"></script>
 
-
+  <script>
+    function imprimirCampoCSRF() {
+        document.write('<input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">');
+    }
+  </script>
   <title>AgendaContactos</title>
 </head>
 <body>

@@ -6,7 +6,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     session_unset();     // Elimina todas las variables de sesión
     session_destroy();   // Destruye la sesión
   }
-  
+session_set_cookie_params(0, '/', '', true, true);  
 session_start();
 
 if (!isset($_SESSION["usuario"])) {

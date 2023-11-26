@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!password_verify($password, $usuario["password"])) {
                 $error = "Las credenciales no coinciden.";
             } else {
-                session_set_cookie_params(600, '/', '', false, true);
+                session_set_cookie_params(0, '/', '', true, true);
                 session_start();
                 $_SESSION["usuario"] = $usuario;
                 header("Location: home.php");
@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <div class="mb-3 row">
                             <div class="col-md-6 offset-md-4">
+                            <script>imprimirCampoCSRF();</script>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
