@@ -12,8 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_start();
         session_destroy();
 
-        $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1 ");
-        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $statement = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email' LIMIT 1 ");
         $statement->execute();
 
         if ($statement->rowCount() == 0) {
@@ -24,11 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!password_verify($password, $usuario["password"])) {
                 $error = "Las credenciales no coinciden.";
             } else {
-                session_set_cookie_params(0, '/', '', true, true);
                 session_start();
                 $_SESSION["usuario"] = $usuario;
                 header("Location: home.php");
-                exit();
             }
         }
     }
